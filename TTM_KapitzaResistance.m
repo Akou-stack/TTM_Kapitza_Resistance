@@ -1,7 +1,7 @@
 clearvars
 close all
 set(0,'Units', 'pixels', 'DefaultAxesFontSize',12,'DefaultAxesFontName'...
-    ,'Helvetica','DefaultAxesFontWeight','normal'); % normal bold
+    ,'CMU Serif','DefaultAxesFontWeight','normal'); % normal bold
 %========== Definition of the temperatures ==========%
 Tlattice = 300;                 % lattice temperature [K]
 Te = 300;                         % electron temperature [K]
