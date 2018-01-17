@@ -201,6 +201,8 @@ tau2_p=Ci2/g2*10^12;
 
 E1=exp(-time_temp/tau1_p);
 E2=exp(-time_temp/tau2_p);
+buf = zeros(2*length(T_e_total)-1,size(T_e_total,2));
+
 % lattice temperature in gold
 for ii=1:N1-1
     buf(:,ii)=conv(T_e_total(:, ii)', E1) ./tau1_p;
@@ -225,11 +227,8 @@ Ti2_surf2=T_i_total(:,N1+1);      % Ti at metal1-metal2 interface (in metal2)
 % Plotting the profiles of the T_e
 hfig = figure(2);
 set(hfig, 'position', [0 0 600 450])
-plot(time_show * 1e12,f_time.*max(Te1_surf1)/max(f_time),...
-    time_temp* 1e12,Te1_surf1,time_temp* 1e12,Te1_surf2,...
-    time_temp* 1e12,Te2_surf2)
-legend('Laser pulse','T_{e,surface 1}^{Au}',...
-    'T_{e,surface 2}^{Au}','T_{e,surface 2}^{Co}','Fontsize', 14);
+plot(time_show * 1e12,f_time.*max(Te1_surf1)/max(f_time),time_temp* 1e12,Te1_surf1,time_temp* 1e12,Te1_surf2,time_temp* 1e12,Te2_surf2)
+legend({'Laser pulse','T_{e,surface 1}^{Au}','T_{e,surface 2}^{Au}','T_{e,surface 2}^{Co}'},'Fontsize', 14);
 title('T_e at air-metal1 and metal1-metal2 interfaces');
 xlabel('Delay time, ps','FontSize',16);
 ylabel('Temperature, a. u.' , 'FontSize',16)
@@ -239,11 +238,8 @@ box on;
 % Plotting the profiles of the T_i
 hfig = figure(3);
 set(hfig, 'position', [0 0 600 450])
-plot(time_show* 1e12,f_time.*max(Ti2_surf2)/max(f_time),...
-    time_temp* 1e12,Ti1_surf1,time_temp* 1e12,Ti1_surf2,...
-    time_temp* 1e12,Ti2_surf2)
-legend('Laser pulse','T_{i,surface 1}^{Au}','T_{i,surface 2}^{Au}',...
-    'T_{i,surface 2}^{Co}', 'Fontsize', 14);
+plot(time_show* 1e12,f_time.*max(Ti2_surf2)/max(f_time),time_temp* 1e12,Ti1_surf1,time_temp* 1e12,Ti1_surf2,time_temp* 1e12,Ti2_surf2)
+legend({'Laser pulse','T_{i,surface 1}^{Au}','T_{i,surface 2}^{Au}','T_{i,surface 2}^{Co}'}, 'Fontsize', 14);
 title('T_i at air-metal1 and metal1-metal2 interfaces');
 ylabel('Temperature, a. u.' , 'FontSize',16)
 xlabel('Delay time, ps','FontSize',16);
@@ -272,9 +268,11 @@ view([0 -90])
 
 % Plotting sinusoidal pattern
 
-lambda = 10                              %grating period in um
-resolution=500                              %resolution
-number_of_periods=3                         %number of periods
+lambda = 10;                            %grating period in um
+resolution = 500;                          %resolution
+number_of_periods = 3;                         %number of periods
+x1_temp = zeros(1,resolution*number_of_periods);
+
 for i=1:(resolution*number_of_periods)
     x1_temp(i)=(sin(i/resolution*pi))^2;             %sinus pattern
 end
@@ -298,7 +296,7 @@ this_one(1:number_of_z_steps,2)=transpose(T_i_total(end,1:number_of_z_steps));
 hfig = figure(7);
 plot(this_one(:,1),this_one(:,2))
 
-ExpFit = fit(this_one(:,1),this_one(:,2),'exp1')
+ExpFit = fit(this_one(:,1),this_one(:,2),'exp1');
 
 hfig = figure(8);
 plot(ExpFit,this_one(:,1),this_one(:,2))
