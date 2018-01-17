@@ -254,6 +254,7 @@ title('Evolution of the T_e(z, t)');
 ylabel('Delay time, ps' , 'FontSize',16)
 xlabel('Thickness, nm','FontSize',16);
 xlim([0 (thicknessAu + thicknessCo) * 1e9])
+colorbar
 view([0 -90])
 
 % Plotting the 2D distribution of the T_i
@@ -264,6 +265,7 @@ title('Evolution of the T_i(z, t)');
 ylabel('Delay time, ps' , 'FontSize',16)
 xlabel('Thickness, nm','FontSize',16);
 xlim([0 (thicknessAu + thicknessCo) * 1e9])
+colorbar
 view([0 -90])
 
 % Plotting sinusoidal pattern
@@ -285,6 +287,7 @@ mesh(z_show * 1e9, (1:(resolution*number_of_periods))/resolution*lambda,Sinus_te
 title('Final T_i(z, t) of Grating');
 ylabel('Position, um' , 'FontSize',16);
 xlabel('Thickness, nm','FontSize',16);
+colorbar
 view([0 -90])
 
 % Calculating heatDepthProfile
