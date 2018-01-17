@@ -141,10 +141,14 @@ for index_omega=1:N_time
     omega=delta_omega*(index_omega-1)-pi/delta_t;
     % calculation of the Maxwell wave numbers p
     p1=sqrt(-1i*(omega/D1)*(1 - (Ci1/Ce1)/(0 + 1i*omega*tau1*Ci1/Ce1)));
-    if (real(p1)<0) p1 = -p1; end;
+    if (real(p1)<0) 
+        p1 = -p1; 
+    end;
     
     p2=sqrt(-1i*(omega/D2)*(1 - (Ci2/Ce2)/(0 + 1i*omega*tau2*Ci2/Ce2)));
-    if (real(p2)<0) p2 = -p2; end;
+    if (real(p2)<0) 
+        p2 = -p2; 
+    end;
     
     exp_plus=exp(p1*d1); exp_minus=exp(-p1*d1);
     
@@ -172,7 +176,7 @@ end
 %========== Inverse Fourier transform for Te ==========%
 N_pnts=length(time_temp);
 T_e_total=zeros(N_pnts,N_total);            % matrix of Te(z, t)
-T_i_total=zeros(N_pnts,N_total);             % matrix of Ti(z, t)
+% T_i_total=zeros(N_pnts,N_total);             % matrix of Ti(z, t)
 
 index_time = 0;
 for idTime=time_temp
