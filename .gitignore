@@ -1,9 +1,10 @@
 # Ignored files
 
-# Matlab data #
+# Matlab files #
 ###############
 
 *.mat
+*.asv
 
 # Compiled source #
 ###################
